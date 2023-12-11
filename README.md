@@ -22,6 +22,9 @@ Use models (A-B-C as shown below) to form the pipeline as the final language tut
 - model C: text to voice
 PS: C might be the same as A, needs more research. But the** Goal towards users** should be the top concern when considering which model to use. Besides, better to use open-source models instead of paying premium APIs.
 
+For model C, one may use LangChain to manage LLM. langChain is a tool that helps build automation pipelines, store vector databases (our own data), and automate the monitoring of LLM with various technical strategies as well as prompt engineering. For example, we may manage the prompt strategy by telling LLM to self-supervise the output text quality, ie, tell LLM to redo it again if the previous output was not good.
+
+
 # Market Competitors (for language tutoring)
 - Langotalk (multi-lan)
 - Tutor Lily: AI Language Tutor (multi-lan)
