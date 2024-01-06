@@ -34,6 +34,8 @@ For model C, one may use LangChain to manage LLM. langChain is a tool that helps
 - The library [`SpeechRecognition`](https://pypi.org/project/SpeechRecognition/)
   is used for performing speech recognition, with support for several engines and APIs, online and offline.
     - [Notebook - Easy Speech-to-Text with Python](https://github.com/johnklee/ml_articles/blob/master/medium/Easy-speech-to-text-with-python/notebook.ipynb)
+- [`Whisper`](https://github.com/openai/whisper) is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multitasking model that can perform multilingual speech recognition, speech translation, and language identification.
+    - [Notebook - Introduction for Whisper in OpenAI](https://github.com/johnklee/ml_articles/blob/master/others/ithome_ithelp_openapi_whisper/notebook.ipynb)
 ## For Model C (Text to speech, TTS)
 - The company [Evelenlabs](https://elevenlabs.io/) has advanced **non-open sourced** TTS model for multi-languages. It performs well in Chinese (no Taiwanese tone) and English from my perspective, which inlcudes happy/sad/... tones as well as male/female/... sounds.
 
