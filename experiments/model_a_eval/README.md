@@ -29,11 +29,23 @@ Execute below command to run the evaluation:
 ```shell
 $ ./eval.py
 ...
-+-------------------------+-----------------------+-------+----------+
-|          Input          |          Name         | Score | Time (s) |
-+-------------------------+-----------------------+-------+----------+
-| en_20240108_johnlee.wav | SpeechRecognition/GCP |  1.0  |   4.69   |
-| en_20240121_johnlee.wav | SpeechRecognition/GCP |  1.0  |   1.65   |
-|  en_20240121_chung.wav  | SpeechRecognition/GCP |  0.81 |  10.13   |
-+-------------------------+-----------------------+-------+----------+
+Raw data
++-------------------------+------------------------------+-------+----------+
+|          Input          |             Name             | Score | Time (s) |
++-------------------------+------------------------------+-------+----------+
+| en_20240108_johnlee.wav |    SpeechRecognition/GCP     |  1.0  |   3.95   |
+| en_20240108_johnlee.wav | SpeechRecognition/WhisperAPI |  1.0  |   3.26   |
+| en_20240121_johnlee.wav |    SpeechRecognition/GCP     |  1.0  |   1.69   |
+| en_20240121_johnlee.wav | SpeechRecognition/WhisperAPI |  1.0  |   1.6    |
+|  en_20240121_chung.wav  |    SpeechRecognition/GCP     |  0.81 |   8.49   |
+|  en_20240121_chung.wav  | SpeechRecognition/WhisperAPI |  0.87 |   3.39   |
++-------------------------+------------------------------+-------+----------+
+
+Ranking Table
++------------------------------+------------+--------------+
+|             Name             | Avg. score | Avg. Time(s) |
++------------------------------+------------+--------------+
+| SpeechRecognition/WhisperAPI |    0.96    |     2.75     |
+|    SpeechRecognition/GCP     |    0.94    |     4.71     |
++------------------------------+------------+--------------+
 ```
