@@ -5,7 +5,7 @@ Here will hold the instructions on how to do evaluation on Model A (STT).
 First step is to collect audio files and the expected text as ground truth for
 Model A to extract from. The audio files and text files should have same names
 for the framework to process. e.g.:
-```
+```shell
 # ls -hl
 total 3.8M
 -rw-r--r-- 1 root root  110 Jan  8 09:38 en_20240108_johnlee.txt
