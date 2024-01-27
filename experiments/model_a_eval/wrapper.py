@@ -19,6 +19,9 @@ class ModelA(Protocol):
   def audio_2_text(self, audio_file_path: str) -> str:
     """Turns audio of given file path into text.
 
+    Args:
+      audio_file_path: Audio file path to do audio to text transformation.
+
     Returns:
       Transformed speech text from given audio file.
     """
@@ -30,6 +33,15 @@ class ModelAMetric(Protocol):
 
   def score(
       self,
-      transformed_text: str, ground_truth_text: str) -> float:
-    """Calculates the metric score."""
+      transformed_text: str,
+      ground_truth_text: str) -> float:
+    """Calculates the metric score.
+
+    Args:
+      transformed_text: The text transformed by model A.
+      ground_truth_text: The ground truth of text.
+
+    Returns:
+      The corresponding metric score.
+    """
     pass

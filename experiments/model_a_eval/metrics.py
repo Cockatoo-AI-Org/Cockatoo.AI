@@ -12,8 +12,8 @@ def text_2_vector(text: str, to_lower: bool = True) -> List[str]:
   Simple Usage:
   ```python
   >>> from metrics import *
-  >>> text_2_vector('this is for testing. How interesting! A quote word as "test".')
-  ['this', 'is', 'for', 'testing', 'how', 'interesting', 'a', 'quote', 'word', 'as', 'test']
+  >>> text_2_vector('this is for testing. A quote word as "test".')
+  ['this', 'is', 'for', 'testing', 'a', 'quote', 'word', 'as', 'test']
   ```
   """
   words = word_tokenize(text)
@@ -44,7 +44,8 @@ class JaccardSimMetric(wrapper.ModelAMetric):
 
   def score(
       self,
-      transformed_text: str, ground_truth_text: str) -> float:
+      transformed_text: str,
+      ground_truth_text: str) -> float:
     """Calculates the metric score."""
     transformed_word_set = set(text_2_vector(transformed_text))
     ground_truth_word_set = set(text_2_vector(ground_truth_text))

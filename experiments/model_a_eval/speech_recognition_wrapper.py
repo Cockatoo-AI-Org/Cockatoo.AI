@@ -18,7 +18,7 @@ class SRGoogleWrapper(wrapper.ModelA):
   For this version, it will delegate the operation to Google Cloud Speech API:
   - https://cloud.google.com/speech-to-text?hl=zh_tw
   """
-  
+
   def __init__(self):
     self._speech_recognizer = sr.Recognizer()
 
@@ -28,15 +28,15 @@ class SRGoogleWrapper(wrapper.ModelA):
 
   def audio_2_text(self, audio_file_path: str) -> str:
     start_time = time.time()
-    with sr.AudioFile(audio_file_path) as source:   
-      try: 
+    with sr.AudioFile(audio_file_path) as source:
+      try:
         # using google speech recognition
         audio_text = self._speech_recognizer.listen(source)
         text = self._speech_recognizer.recognize_google(audio_text)
         time_diff_sec = time.time() - start_time
         return Audio2TextData(
             text=text, spent_time_sec=time_diff_sec)
-      except sr.exceptions.UnknownValueError as ex:
+      except sr.exceptions.UnknownValueError:
         logging.warning(
             f'Can not transform the input audio file from {audio_file_path}')
         time_diff_sec = time.time() - start_time
