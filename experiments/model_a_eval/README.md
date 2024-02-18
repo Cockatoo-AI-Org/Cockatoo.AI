@@ -29,7 +29,7 @@ Execute below command to run the evaluation:
 ```shell
 $ ./eval.py
 ...
-Raw data
+Raw data (LangEnum.en)
 +-------------------------+------------------------------+-------+----------+
 |          Input          |             Name             | Score | Time (s) |
 +-------------------------+------------------------------+-------+----------+
@@ -49,3 +49,32 @@ Ranking Table
 |    SpeechRecognition/GCP     |    0.94    |     4.71     |
 +------------------------------+------------+--------------+
 ```
+
+### Switch to different language
+We could use argument `--lang` or `-l` to switch the language we want to evaluate. e.g.:
+```shell
+# ./eval.py  --lang=cn
+...
+Raw data (LangEnum.cn)
++-------------------------+------------------------------+-------+----------+
+|          Input          |             Name             | Score | Time (s) |
++-------------------------+------------------------------+-------+----------+
+| cn_20240108_johnlee.wav |    SpeechRecognition/GCP     |  0.36 |   5.44   |
+| cn_20240108_johnlee.wav | SpeechRecognition/WhisperAPI |  0.88 |   2.58   |
+|  cn_20240121_chung.wav  |    SpeechRecognition/GCP     |  0.93 |  14.66   |
+|  cn_20240121_chung.wav  | SpeechRecognition/WhisperAPI |  0.96 |   3.0    |
++-------------------------+------------------------------+-------+----------+
+
+Ranking Table
++------------------------------+------------+--------------+
+|             Name             | Avg. score | Avg. Time(s) |
++------------------------------+------------+--------------+
+| SpeechRecognition/WhisperAPI |    0.92    |     2.79     |
+|    SpeechRecognition/GCP     |    0.65    |    10.05     |
++------------------------------+------------+--------------+
+```
+
+## FAQ
+
+### openai.error.RateLimitError: Rate limit reached for whisper-1
+Please try again in 20s. Visit https://platform.openai.com/account/rate-limits to learn more. You can increase your rate limit by adding a payment method to your account at https://platform.openai.com/account/billing.
