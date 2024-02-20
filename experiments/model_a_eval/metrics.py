@@ -2,12 +2,21 @@
 import logging
 from nltk.tokenize import word_tokenize
 import string
-from typing import List
 import wrapper
 
 
-def text_2_vector(text: str, to_lower: bool = True) -> List[str]:
-  """Turns text into vector.
+PUNCTUATION_MARK_SET = set(string.punctuation)
+
+
+def cn_text_2_vector(text: str) -> list[str]:
+  """Turns cn text into vector."""
+  return [
+      ch for ch in text
+      if ch.strip() and ch.strip() not in PUNCTUATION_MARK_SET]
+
+
+def en_text_2_vector(text: str, to_lower: bool = True) -> list[str]:
+  """Turns en text into vector.
 
   Simple Usage:
   ```python
@@ -41,12 +50,19 @@ class JaccardSimMetric(wrapper.ModelAMetric):
   similarity between two data sets. It is measured as the size of the
   intersection of two sets divided by the size of their union.
   """
+  def __init__(self, lang: wrapper.LangEnum):
+    self.lang = lang
 
   def score(
       self,
       transformed_text: str,
       ground_truth_text: str) -> float:
     """Calculates the metric score."""
+    if self.lang == wrapper.LangEnum.cn:
+      text_2_vector = cn_text_2_vector
+    else:
+      text_2_vector = en_text_2_vector
+
     transformed_word_set = set(text_2_vector(transformed_text))
     ground_truth_word_set = set(text_2_vector(ground_truth_text))
 

@@ -16,7 +16,8 @@ class Audio2TextData:
 class SRWhisperWrapper(wrapper.ModelA):
   """Wrapper of speech_recognition.Recognizer (for Whisper API users)."""
 
-  def __init__(self):
+  def __init__(self, lang: wrapper.LangEnum):
+    super().__init__(lang)
     self._speech_recognizer = sr.Recognizer()
 
   @property
@@ -51,9 +52,15 @@ class SRGoogleWrapper(wrapper.ModelA):
 
   For this version, it will delegate the operation to Google Cloud Speech API:
   - https://cloud.google.com/speech-to-text?hl=zh_tw
+  - https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages
   """
 
-  def __init__(self):
+  def __init__(self, lang: wrapper.LangEnum):
+    super().__init__(lang)
+    self.language = 'en-US'
+    if lang == wrapper.LangEnum.cn:
+      self.language = 'zh-TW'
+
     self._speech_recognizer = sr.Recognizer()
 
   @property
@@ -67,7 +74,8 @@ class SRGoogleWrapper(wrapper.ModelA):
       try:
         # using google speech recognition
         audio_text = self._speech_recognizer.listen(source)
-        text = self._speech_recognizer.recognize_google(audio_text)
+        text = self._speech_recognizer.recognize_google(
+            audio_text, language=self.language)
         time_diff_sec = time.time() - start_time
         return Audio2TextData(
             text=text, spent_time_sec=time_diff_sec)

@@ -5,11 +5,29 @@ interfaces that is both accessible and easy to use. We define general-purpose
 APIs here to guide the implementation of model A evaluation.
 """
 
+import enum
 from typing import Protocol
+
+
+@enum.unique
+class LangEnum(enum.Enum):
+  en = 0
+  cn = 1
+
+  @classmethod
+  def from_str(cls, lang_str: str):
+    for supported_lang_enum in cls:
+      if supported_lang_enum.name == lang_str:
+        return supported_lang_enum
+
+    raise ValueError(f'Unknown lang setting={lang_str}!')
 
 
 class ModelA(Protocol):
   """Model A wrapper."""
+
+  def __init__(self, lang: LangEnum = LangEnum.en):
+    self.lang = lang
 
   @property
   def name(self) -> str:
