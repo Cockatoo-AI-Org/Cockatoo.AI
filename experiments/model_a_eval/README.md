@@ -74,6 +74,32 @@ Ranking Table
 +------------------------------+------------+--------------+
 ```
 
+### Switch to different metric
+We could use argument `--metric` or `-m` to switch the metric for evaluation.
+e.g.:
+```shell
+$ ./eval.py -m=jaccard_sim
+...
+Raw data (LangEnum.en)
++-------------------------+------------------------------+-------+----------+
+|          Input          |             Name             | Score | Time (s) |
++-------------------------+------------------------------+-------+----------+
+| en_20240121_johnlee.wav |    SpeechRecognition/GCP     |  1.0  |   1.04   |
+| en_20240121_johnlee.wav | SpeechRecognition/WhisperAPI |  1.0  |   2.06   |
+|  en_20240121_chung.wav  |    SpeechRecognition/GCP     |  0.81 |   8.1    |
+|  en_20240121_chung.wav  | SpeechRecognition/WhisperAPI |  0.87 |   1.88   |
++-------------------------+------------------------------+-------+----------+
+
+Ranking Table (metric=<class 'metrics.JaccardSimMetric'>)
++------------------------------+------------+--------------+
+|             Name             | Avg. score | Avg. Time(s) |
++------------------------------+------------+--------------+
+| SpeechRecognition/WhisperAPI |    0.93    |     1.97     |
+|    SpeechRecognition/GCP     |    0.9     |     4.57     |
++------------------------------+------------+--------------+
+```
+
+
 ## FAQ
 
 ### openai.error.RateLimitError: Rate limit reached for whisper-1
