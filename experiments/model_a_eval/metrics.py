@@ -145,7 +145,13 @@ class WordErrorRateMetric(wrapper.ModelAMetric):
 
     # Calculation of `D`
     for w, f in ground_truth_word_counter.items():
-      deletion_word_count += (f - transformed_word_counter.get(w, 0))
+      diff = f - transformed_word_counter.get(w, 0)
+      if diff > 0:
+        deletion_word_count += diff
+      elif diff < 0:
+        # The transformed part contains more word than expected.
+        # Count it to `insert_or_unknown_word_count`.
+        insert_or_unknown_word_count += abs(diff)
 
     # Calculation of `S` + `I`
     for w, f in transformed_word_counter.items():
