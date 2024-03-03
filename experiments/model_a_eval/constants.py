@@ -1,4 +1,4 @@
-"""Module to hold constnats."""
+"""Module to hold constants."""
 
 class Color:
   """Terminal Color."""
