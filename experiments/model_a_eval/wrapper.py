@@ -47,7 +47,21 @@ class ModelA(Protocol):
 
 
 class ModelAMetric(Protocol):
-  """Clz to calculate metric score of model A."""
+  """Clz to calculate metric score of model A.
+
+  Attributes:
+    - name: Name of metric.
+    - lang: Language of text to calculate metric.
+  """
+  name: str = 'Unknown'
+  do_sort_reverse: bool = True
+
+  def __init__(self, lang: LangEnum):
+    self._lang = lang
+
+  @property
+  def lang(self) -> LangEnum:
+    return self._lang
 
   def score(
       self,

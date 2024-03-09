@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import argparse
+import constants
 import os
 import logging
 import re
 from collections import defaultdict
-from metrics import JaccardSimMetric
+import metrics
 from pathlib import Path
 from prettytable import PrettyTable
 from speech_recognition_wrapper import SRGoogleWrapper
@@ -12,6 +13,7 @@ from speech_recognition_wrapper import SRWhisperWrapper
 import wrapper
 
 
+Color = constants.Color
 AUDIO_DATA_ROOT_SRC_PATH = os.environ.get(
     'AUDIO_DATA_ROOT_SRC_PATH', '/tmp/')
 
@@ -24,6 +26,12 @@ if __name__ == '__main__':
       choices=['en', 'cn'],
       default='en',
       type=str)
+  parser.add_argument(
+      '--metric', '-m',
+      help='Metric you would like to use.',
+      choices=list(map(lambda m: m.name, metrics.get_all_metric())),
+      default=metrics.get_default_metric().name,
+      type=str)
   args = parser.parse_args()
 
   lang_setting = wrapper.LangEnum.from_str(args.lang)
@@ -35,7 +43,8 @@ if __name__ == '__main__':
     SRWhisperWrapper(lang=lang_setting),
   ]
 
-  metric = JaccardSimMetric(lang=lang_setting)
+  metric_clz = metrics.get_metric(args.metric)
+  metric = metric_clz(lang=lang_setting)
   # Key as model name; value as accumulated score.
   model_accumulated_scores = defaultdict(list)
   model_accumulated_time = defaultdict(list)
@@ -43,7 +52,7 @@ if __name__ == '__main__':
   for wav_file in filter(
       lambda f: wav_file_name_pattern.match(f),
       os.listdir(AUDIO_DATA_ROOT_SRC_PATH)):
-    print(f'=== Processing {wav_file} ===')
+    print(f'{Color.BOLD}=== Processing {wav_file} ==={Color.END}')
     ground_truth_file_path = os.path.join(
         AUDIO_DATA_ROOT_SRC_PATH, f'{Path(wav_file).stem}.txt')
     if not os.path.isfile(ground_truth_file_path):
@@ -54,7 +63,9 @@ if __name__ == '__main__':
     with open(ground_truth_file_path, 'r') as fo:
       ground_truth_text = fo.read()
 
-    print(f'Ground truth text:\n{ground_truth_text}\n')
+    print(
+        f'{Color.BLUE}{Color.BOLD}Ground truth text{Color.END}:'
+        f'\n{Color.BLUE}{ground_truth_text}\n{Color.END}')
     print('-' * 20)
     for model_a in model_a_list:
       a2t_data = model_a.audio_2_text(wav_file_path)
@@ -72,10 +83,10 @@ if __name__ == '__main__':
 
     print('')
 
-  print(f'Raw data ({lang_setting})')
+  print(f'{Color.BOLD}Raw data ({lang_setting}){Color.END}')
   print(score_table)
   print('')
-  print('Ranking Table')
+  print(f'{Color.BOLD}Ranking Table (metric={metric.__class__}){Color.END}')
   ranking_table = PrettyTable(['Name', 'Avg. score', 'Avg. Time(s)'])
   ranking_data = []
   for model_name in model_accumulated_scores.keys():
@@ -91,7 +102,8 @@ if __name__ == '__main__':
         else 0)
     ranking_data.append((model_name, avg_model_score, avg_model_spent_time))
 
-  ranking_data = sorted(ranking_data, key=lambda t: t[1], reverse=True)
+  ranking_data = sorted(
+      ranking_data, key=lambda t: t[1], reverse=metric.do_sort_reverse)
   for data in ranking_data:
     ranking_table.add_row(data)
   print(ranking_table)
