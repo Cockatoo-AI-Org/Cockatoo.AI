@@ -19,8 +19,8 @@ $ source env/bin/active
 ...
 ```
 
-
-### Sample code
+## Sample Code
+### Demonstrate the usage of Agent
 Please follow below instructions to query the Linkedin URL of people with
 searching string as "Google Test Engineer Lee John":
 ```python
@@ -42,3 +42,35 @@ Final Answer: https://tw.linkedin.com/in/lee-john-81601a7a
 
 The final result is `https://tw.linkedin.com/in/lee-john-81601a7a` which is
 correct as my Linkedin URL.
+
+### Demonstrate the usage of RAG
+This section will demonstrate the usage of [RAG](https://www.promptingguide.ai/techniques/rag) (a.k.a Retrieval Augmented
+Generation). For RAG to work, the first step is to create the vector store which
+will be used as reference for LLM to answer question:
+```python
+>>> from scripts import doc_loader
+>>> doc_path = '...'  # Please replace `...` with doc path we want LLM to search for.
+>>> vectorstore = doc_loader.create_vector_db_of_repo([doc_path])
+```
+
+Then we could test the vectorstore with question to retrieve the releveant docs:
+```python
+>>> question = 'Where do we put the sample code of LangChain?'
+>>> relevant_docs = vectorstore.similarity_search(question, k=3)
+>>> print(relevant_docs[0].page_content)
+...
+* `src/`: store source codes mainly .py files.
+* `experiments/`: store experiment files. I created an empty .ipynb file to keep Git able to detect and upload the folder.
+  - `experiments/langchain_lab/`: We put the sample codes of [`LangChain`](https://python.langchain.com/docs/get_started/introduction) here.
+  - `experiments/model_a_eval/`: We put the code/framework to evaluate model A
+    here.
+...
+```
+
+Finally, we could provide our LLM chatbot with this `vectorstore` and query it:
+```python
+>>> import chatbot_demo
+>>> rag_chatbot = chatbot_demo.get_rag_chatbot(vectorstore)
+>>> rag_chatbot.invoke(question)
+'The sample codes of LangChain should be placed in the `experiments/langchain_lab/` directory within the `Cockatoo.AI` repository. This directory is specifically designated for storing the sample codes of LangChain.'
+```
