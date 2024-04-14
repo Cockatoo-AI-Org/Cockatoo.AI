@@ -11,6 +11,8 @@ from langchain_community.chat_models import ChatOpenAI
 from langchain_community.vectorstores import Chroma
 from langchain_core.output_parsers import StrOutputParser
 
+import textwrap
+
 
 # Below variables are required in current module:
 # - OPENAI_API_KEY: OpenAI API key. (https://platform.openai.com/api-keys)
@@ -29,16 +31,17 @@ def get_chatbot(
   Returns:
     Chatbot object.
   """
-  qa_system_template_str = """Your job is to play senior engineer
-to answer questions about how to use the repo `Cockatoo.AI` on Github.
+  qa_system_template_str = textwrap.dedent("""
+  Your job is to play senior engineer
+  to answer questions about how to use the repo `Cockatoo.AI` on Github.
 
-Use the following context to answer questions. Be as detailed as possible,
-but don't make up any information that's not from the context.
+  Use the following context to answer questions. Be as detailed as possible,
+  but don't make up any information that's not from the context.
 
-If you don't know an answer, say you don't know.
+  If you don't know an answer, say you don't know.
 
-{context}
-"""
+  {context}
+  """).strip()
 
   review_system_prompt = SystemMessagePromptTemplate(
       prompt=PromptTemplate(
