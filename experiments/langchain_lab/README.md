@@ -69,8 +69,8 @@ Then we could test the vectorstore with question to retrieve the releveant docs:
 
 Finally, we could provide our LLM chatbot with this `vectorstore` and query it:
 ```python
->>> import chatbot_demo
->>> rag_chatbot = chatbot_demo.get_rag_chatbot(vectorstore)
+>>> from chatbot_demo import rag
+>>> rag_chatbot = rag.get_chatbot(vectorstore)
 >>> rag_chatbot.invoke(question)
 'The sample codes of LangChain should be placed in the `experiments/langchain_lab/` directory within the `Cockatoo.AI` repository. This directory is specifically designated for storing the sample codes of LangChain.'
 ```

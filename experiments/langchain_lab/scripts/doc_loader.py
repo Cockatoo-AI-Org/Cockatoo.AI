@@ -1,8 +1,4 @@
-"""Script to create vector DB for usage of RAG.
-
-Reference:
-  - [Document Loaders in LangChain]()
-"""
+"""Script to create vector DB for usage of RAG."""
 
 import dotenv
 from langchain.document_loaders.csv_loader import CSVLoader
@@ -20,9 +16,6 @@ dotenv.load_dotenv()
 def create_vector_db_of_repo(
     doc_paths: list[str], name='langchain_store'):
   embeddings = OpenAIEmbeddings(),
-  # vectorstore = Chroma(
-  #     name, embeddings, persist_directory=PERSISTENT_CHROMA_PATH)
-
   text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000, chunk_overlap=200)
 
