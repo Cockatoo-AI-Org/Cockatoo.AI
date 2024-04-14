@@ -20,6 +20,11 @@ $ source env/bin/active
 ```
 
 ## Sample Code
+For below sample codes to work properly, please prepare a `.env` file to hold
+below variables which will be referred from source code:
+* **`OPENAI_API_KEY`**: OpenAI API key. (https://platform.openai.com/api-keys)
+* **`SERPAPI_API_KEY`**: Your unique access key for authenticating with the [SerpApi service](https://serper.dev/).
+
 ### Demonstrate the usage of Agent
 Please follow below instructions to query the Linkedin URL of people with
 searching string as "Google Test Engineer Lee John":

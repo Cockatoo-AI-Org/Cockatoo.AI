@@ -10,7 +10,7 @@ from langchain_community.embeddings import OpenAIEmbeddings
 
 
 PERSISTENT_CHROMA_PATH = "chroma_data"
-# Below variables are expected:
+# Below variables are required in current module:
 # - OPENAI_API_KEY: OpenAI API key. (https://platform.openai.com/api-keys)
 dotenv.load_dotenv()
 
