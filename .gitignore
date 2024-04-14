@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*/model_c/voice_ref/
 
 # C extensions
 *.so
