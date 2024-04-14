@@ -6,7 +6,7 @@ from api import get_device, get_tts_model, record_voice
 
 if __name__ == "__main__":
 
-    # inputs that can parameterized via argparser in the future
+    # inputs that can be put into argparser with proper defaults in the future
     intput_text = "我想要吃飯，你有推薦的Restaurant嗎?"
     speaker = "Luis Moray"
     language = "zh-cn"
