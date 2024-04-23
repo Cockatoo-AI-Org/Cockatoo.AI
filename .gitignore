@@ -1,3 +1,7 @@
+# Large data folders
+experiments/model_c/data/
+experiments/model_c/output/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
