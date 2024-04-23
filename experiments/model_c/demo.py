@@ -29,7 +29,7 @@ if __name__ == "__main__":
     _ = record_voice(duration=duration, file_path=speaker_wav)
 
     # inference
-    # one of the spkear and speaker_wav (6-10 secs) must be given
+    # one of the speaker and speaker_wav (6-10 secs) must be given
     _ = tts.tts_to_file(
         intput_text, speaker=speaker, language=language, split_sentences=True,
         speaker_wav=speaker_wav, file_path=file_path
