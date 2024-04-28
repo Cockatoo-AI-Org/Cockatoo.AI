@@ -2,7 +2,7 @@
 name = "cockatoo-ai"
 version = "0.1.0"
 description = "An exclusive language trainer for you to help escalate your language to next level with joy and fun."
-authors = ["Wen-Kai Chung <wkaichungtw@gmail.com>", "John Lee <puremonkey2007@gmail.com>", "Louis <louis120913@gmail.com>", "Demmi Yu cicada2205@gmail.com"]
+authors = ["Wen-Kai Chung <wkaichungtw@gmail.com>", "John Lee <puremonkey2007@gmail.com>", "Louis <louis120913@gmail.com>", "Demmi Yu <cicada2205@gmail.com>"]
 license = "Apache 2.0"
 readme = "README.md"
 packages = [
@@ -11,15 +11,32 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
+<<<<<<< HEAD
 python = "^3.11"
 pandas = "^2.1.4"
 numpy = "^1.26.3"
 sounddevice = "^0.4.6"
 scipy = "^1.13.0"
+=======
+python = "~3.11"
+numpy = "^1.26.3"
+tts = "^0.22.0"
+torch = {version = "^2.2.2+cu121", source = "pytorch-gpu"}
+torchvision = {version = "^0.17.2+cu121", source = "pytorch-gpu"}
+torchaudio = {version = "^2.2.2+cu121", source = "pytorch-gpu"}
+>>>>>>> 739e168cd0e987ef1fce0314a90e21d37a6e31fd
 
 
 [tool.poetry.group.dev.dependencies]
 sphinx = "^7.2.6"
+ipython = "^8.22.2"
+ipykernel = "^6.29.4"
+
+
+[[tool.poetry.source]]
+name = "pytorch-gpu"
+url = "https://download.pytorch.org/whl/cu121"
+priority = "explicit"
 
 [build-system]
 requires = ["poetry-core"]
