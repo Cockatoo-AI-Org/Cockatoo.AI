@@ -13,12 +13,11 @@ DeviceLikeType: TypeAlias = str | torch.device | int
 
 def get_device() -> str:
     """Check if cuda is available and return corresp. string"""
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    return device
+    return "cuda" if torch.cuda.is_available() else "cpu"
 
 
 def get_tts_model(
-    identifier: Optional[str] = None, device: DeviceLikeType = "cpu"
+    identifier: str = None, device: DeviceLikeType = "cpu"
 ) -> TTS:
     """
     Get specified TTS model via input ``identifier`` string. The avaiable
@@ -34,7 +33,7 @@ def get_tts_model(
     device: DeviceLikeType, optional
         Can be str, torch.device type, or int to indicate desired device for
         usage. For example, cpu, cuda, 0, or 'cuda:0' etc. Defaults to 'cpu'.
-    
+
     Returns
     -------
     TTS

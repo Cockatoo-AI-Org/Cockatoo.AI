@@ -15,9 +15,9 @@ if __name__ == "__main__":
     speaker_wav = "./experiments/model_c/voice_ref/chung_recorded.wav"
 
     # retrieve model
-    device = get_device()
     tts = get_tts_model(
-        identifier="tts_models/multilingual/multi-dataset/xtts_v2"
+        identifier="tts_models/multilingual/multi-dataset/xtts_v2",
+        device=get_device()
     )
     print("list of available speakers:\n",
           tts.synthesizer.tts_model.speaker_manager.name_to_id
