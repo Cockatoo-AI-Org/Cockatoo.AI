@@ -1,7 +1,7 @@
 import requests
 
 API_URL = "https://api-inference.huggingface.co/models/google/gemma-7b-it"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": "ｘｘｘｘｘｘＰｕｔ　Ｙｏｕｒ　ＡＰＩ　Ｈｅｒｅ　ｘｘｘｘｘｘ"}
 
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
