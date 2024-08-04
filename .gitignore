@@ -1,7 +1,12 @@
+# Large data folders
+experiments/model_c/data/
+experiments/model_c/output/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*/model_c/voice_ref/
 
 # C extensions
 *.so
