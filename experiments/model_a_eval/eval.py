@@ -8,8 +8,7 @@ from collections import defaultdict
 import metrics
 from pathlib import Path
 from prettytable import PrettyTable
-from speech_recognition_wrapper import SRGoogleWrapper
-from speech_recognition_wrapper import SRWhisperWrapper
+from speech_recognition_wrapper import SRGoogleWrapper, SRWhisperWrapper, GeminiWrapper
 import wrapper
 
 
@@ -41,6 +40,7 @@ if __name__ == '__main__':
   model_a_list = [
     SRGoogleWrapper(lang=lang_setting),
     SRWhisperWrapper(lang=lang_setting),
+    GeminiWrapper(lang=lang_setting),
   ]
 
   metric_clz = metrics.get_metric(args.metric)
