@@ -8,14 +8,14 @@ assignees: ""
 
 **Troubleshoot the bug**
 
-A clear concise description about what the bug is.
+Provide a clear and concise description of the bug.
 
 - Bug 1
 - Bug 2
 
 **Solution**
 
-Describe your solution.
+Concisely state the problem the solution addresses and perhaps a brief description of the solution itself.
 
 - Solution 1
 - Solution 2
