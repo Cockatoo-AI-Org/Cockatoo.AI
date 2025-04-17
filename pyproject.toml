@@ -2,7 +2,7 @@
 name = "cockatoo-ai"
 version = "0.1.0"
 description = "An exclusive language trainer for you to help escalate your language to next level with joy and fun."
-authors = ["Wen-Kai Chung <wkaichungtw@gmail.com>", "John Lee <puremonkey2007@gmail.com>", "Louis <louis120913@gmail.com>", "Demmi Yu <cicada2205@gmail.com>"]
+authors = ["Wen-Kai Chung <wkaichungtw@gmail.com>", "John Lee <puremonkey2007@gmail.com>", "Louis <louis120913@gmail.com>", "Demmi Yu <yuchaodemmi@gmail.com>"]
 license = "Apache 2.0"
 readme = "README.md"
 packages = [
@@ -17,7 +17,6 @@ tts = "^0.22.0"
 torch = {version = "^2.2.2+cu121", source = "pytorch-gpu"}
 torchvision = {version = "^0.17.2+cu121", source = "pytorch-gpu"}
 torchaudio = {version = "^2.2.2+cu121", source = "pytorch-gpu"}
-
 
 [tool.poetry.group.dev.dependencies]
 sphinx = "^7.2.6"
